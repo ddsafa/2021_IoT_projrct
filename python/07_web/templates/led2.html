@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p><h1>LED ON/OFF</h1></p>
+    <button onclick="led_op(1, 'RED', 'ON')">RED LED ON</button>
+    <button onclick="led_op(2, 'RED', 'OFF')">RED LED OFF</button>
+    <button onclick="led_op(1,'BLUE', 'ON')">BLUE LED ON</button>
+    <button onclick="led_op(2, 'BLUE', 'OFF')">BLUE LED OFF</button>
+    <div id="result"></div>
+    <script>    
+        function led_op(op, color, onOff) {
+          let url = (op == 1) ? "/led/" + color + "/on" : "/led/" + color + "/off";
+          fetch(url)
+          .then(response=>response.text())
+          .then(data=> {
+            let result = document.querySelector("#result");
+            result.innerHTML = "<h1>" + color + " LED " + onOff + "</h1>";
+          });
+        }
+      </script>
+  </body>
+</html>
